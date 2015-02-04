@@ -1,0 +1,26 @@
+section#diapo{
+    font-size: 1rem;
+        
+    div:nth-child(1){
+        box-sizing: border-box;
+        @media screen and (max-width : 30em){
+            @include grid_row(100%, 0);
+        }
+        @media screen and (min-width : 30em) and (max-width : 60em){
+            @include grid_row(100%, 0);
+            margin: auto;
+            background-color: $diapo_bg_color;
+            height: 15em;
+            border: 1px solid $diapo_border_color;
+            border-top:none;
+        }
+        @media screen and (min-width : 60em){
+            @include grid_row(60rem, 0);
+            margin: auto;
+            background-color: $diapo_bg_color;
+            height: 15em;
+            border: 1px solid $diapo_border_color;
+            border-top:none;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+%window{
+    width: 90%;
+    height: auto;
+    min-height: 5em;
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: 1px solid;
+    legend{
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+        box-sizing: border-box;
+        border-bottom: 1px solid;
+        font-size: 1em;
+        font-weight: normal;    
+        text-align: center;   
+    }
+    p{
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 1em;
+        box-sizing: border-box;
+        font-size: 0.9em;
+    }
+}
+
+@mixin window($background_color,$color: darken($background_color,40%),$border_color: darken($background_color,30%)){
+    @extend %window;
+    border-color: $border_color;
+    legend{
+        background-color: $background_color;
+        border-color: $border_color;
+        color: $color;    
+    }
+    p{
+        color: darken($color,80%);
+    }
+}

@@ -1,0 +1,79 @@
+
+// -------------------------TITLE ----------------------//
+
+%title{
+    font-weight: bold;
+    margin: 1rem 0.5rem 1rem 0.5rem;
+    strong{
+        font-size: 1.2em;
+        color: grey;
+    }
+    small{
+        font-size: 0.8em;
+        color: grey;
+    }
+    a{
+        font-weight: bold;
+        font-size: 1em;
+        text-decoration: none;
+    }
+}
+
+@mixin title($font-size, $color: black,$color-link:$color){
+    @extend %title;
+    color: $color;
+    font-size: $font-size;
+    a{
+        color: $color-link;
+        font-weight: bold;
+        font-size: 1em;
+        text-decoration: none;
+        &:hover{
+            color: lighten($color-link,20%);
+        }
+    }
+}
+
+// -------------------------TEXT ----------------------//
+
+%text{
+    font-weight: normal;
+    a{
+        font-weight: bold;
+        font-size: 1em;
+    }
+    strong{
+        font-size: 1.1em;
+    }
+    small{
+        font-size: 0.75em;
+    }
+}
+
+@mixin text($font-size,$color: black,$color-link:$color){
+    @extend %text;
+    font-size: $font-size;
+    margin-bottom: $font-size;
+    text-indent: $font-size;
+    color: $color;
+    a{
+        color: $color-link;
+        &:hover{
+            color: lighten($color-link,20%);
+        }
+    }
+    strong{
+        font-size: 1.1em;
+        color: $color;
+    }
+    small{
+        font-size: 0.75em;
+        color: $color;
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+footer{
+    @include grid_row(100%, 0);
+    h2{
+        margin: 0;
+        padding: 1.2em;
+        background-color: $header_bg_color;
+        border-top: 1px solid $header_border_color;
+        color: white;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}

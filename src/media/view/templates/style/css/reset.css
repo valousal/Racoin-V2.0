@@ -1,0 +1,117 @@
+/* line 1, ../scss/reset.scss */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, button, canvas, details, figcaption, figure,
+footer, header, hgroup, input, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* line 26, ../scss/reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 31, ../scss/reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 36, ../scss/reset.scss */
+nav ul {
+  list-style: none;
+}
+
+/* line 40, ../scss/reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 44, ../scss/reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 50, ../scss/reset.scss */
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* line 58, ../scss/reset.scss */
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* change colours to suit your needs */
+/* line 62, ../scss/reset.scss */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+/* line 69, ../scss/reset.scss */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* line 76, ../scss/reset.scss */
+del {
+  text-decoration: line-through;
+}
+
+/* line 80, ../scss/reset.scss */
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+/* line 85, ../scss/reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+/* line 91, ../scss/reset.scss */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* line 100, ../scss/reset.scss */
+input, select {
+  vertical-align: middle;
+}

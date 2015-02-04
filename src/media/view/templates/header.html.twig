@@ -1,0 +1,35 @@
+<header>
+    <nav>
+        <a href="{{accueil}}"><img src="{{rootUri}}/data/icons/home.png" alt="Racoin"><h4>Racoin</h4></a>
+        <a href="{{search}}"><img src="{{rootUri}}/data/icons/search.png" alt="SEARCH"><h4>Search</h4></a>
+        <a href="{{add}}"><img src="{{rootUri}}/data/icons/add.png" alt="ADD"><h4>Add</h4></a>
+        <a href="{{formulaire}}"><img src="{{rootUri}}/data/icons/manage.png" alt="MANAGE"><h4>Manage</h4></a>
+    </nav>
+</header>
+
+<section id="diapo">
+    <div>
+
+    </div>
+</section>
+
+<section id="auth">
+    <div>
+        <h2>Registration</h2>
+        <a href='{{api}}'>API</a> <br>
+        <a href='{{display_login_api}}'>Générer token API</a> <br>
+        <a href='{{url_registration}}'>Registration Pro</a> <br>
+		{% if authentification %}
+        	<h2>Bonjour {{authentification['name']}}</h2>
+            <a href='{{view_profil_pro}}'>Acceder a mon profil</a>
+            <a href='{{LogoutPro}}'>Logout</a>
+        {% else %}
+            <!-- <a href='{{url_registration}}'>Registration Pro</a> -->
+            <form id='authentification' action='{{urlAuthentificationPro}}' method='post'>
+                <input type='text' placeholder='mail' name='mail'>
+                <input type="password" placeholder='password' name='password'>
+                <input type='submit' value='Connexion'>
+            </form>
+        {% endif %}
+    </div>
+</section>

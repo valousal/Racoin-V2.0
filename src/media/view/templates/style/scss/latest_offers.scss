@@ -1,0 +1,144 @@
+section#offer{
+        
+    div{
+        box-sizing: border-box;
+        @media screen and (max-width : 60em){
+            @include grid_row(100%, 0);
+        }
+        @media screen and (min-width : 60em){
+            @include grid_row(60rem, 0);
+            border-left: 1px solid $offer_border_color ;
+            border-right: 1px solid $offer_border_color ;
+            > *{
+                border: none;
+                padding-bottom: none;
+            }
+            margin: auto;
+        }
+        background-color: $offer_bg_color;
+        
+        
+        h2{
+            margin: 0;
+            padding: 0.9rem;
+            background-color: darken($offer_bg_color,5%);
+            border-bottom: 1px solid $offer_border_color;
+            color: $form_search_text;
+            font-size: 1.1rem;
+            text-align: left;
+            @media screen and (max-width : 60em){
+                border-top: 1px solid $offer_border_color;
+            }
+        }
+        
+        article{
+            @media screen and (max-width : 25em){
+                @include grid_col(6, 6, 0);
+                border-bottom: 1px solid $offer_border_color;
+            }
+            @media screen and (min-width : 25em) and (max-width : 32em){
+                @include grid_col(3, 6, 0);
+                border-bottom: 1px solid $offer_border_color;
+                &:nth-child(even){
+                    border-right: 1px solid $offer_border_color;
+                }
+                &:nth-child(odd){
+                    border-right: 1px solid $none;
+                }
+            }
+            @media screen and (min-width : 32em) and (max-width : 45em){
+                @include grid_col(2, 6, 0);
+                border-right: 1px solid $offer_border_color;
+                border-bottom: 1px solid $offer_border_color;
+                &:nth-child(3n+1){
+                    border-right: 1px solid $none;
+                }
+            }
+            @media screen and (min-width : 45em){
+                @include grid_col(1, 4, 0);
+                border-right: 1px solid $offer_border_color;
+                border-bottom: 1px solid $offer_border_color;
+                > *{
+                    border: none;
+                }
+                &:nth-child(4n+1){
+                    border-right: 1px solid $none;
+                }
+            }
+            &:last-child{
+                margin-bottom: 1rem;
+            }
+            box-sizing: border-box;
+            height: auto;
+            padding: 0.5rem !important;
+            font-size: 0 !important;
+            
+            div{
+                @media screen and (max-width : 25em){
+                    display: inline-block;
+                    width: 50%;
+                }
+                @media screen and (min-width : 25em){
+                    display: block;
+                    width: 100%;
+                }
+                vertical-align: top;
+                position: relative;
+                font-size: 1rem;
+                overflow: hidden;
+                span {
+                    padding-top: 75%; /* ratio 4:3  */
+                    display: block;
+                }
+                div {
+                    width: 100%;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    img{
+                        width: 100%;
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+                }
+                a{
+                    text-decoration: none;
+                    @include grid_col(3, 6, 0);
+                    margin: 0;
+                    padding: 0;
+                    height: 100%;
+                    width: 100%;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                    h3:nth-child(1){
+                        @include title(1em, white);
+                        background-color: $button_dark_color;
+                        box-sizing: border-box;
+                        margin: 0;
+                        padding: 14%;
+                        text-align: center;
+                        height: 50%;
+                        width: 100%;
+                    }
+                    h3:nth-child(2){
+                        @include title(1em, #5F5D5F);
+                        background-color: #FAF9F4;
+                        box-sizing: border-box;
+                        margin: 0;
+                        padding: 14%;
+                        text-align: center;
+                        height: 50%;
+                        width: 100%;
+                        &:hover{
+                            color: white;
+                            background-color: $button_ligth_color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+{% extends "main.html.twig" %}
+
+
+{% block main_content %}
+            <section id="add">
+                <div>
+                    <div>
+                        <h2>Annonceur</h2>
+                        <form action='{{urlGenerateToken}}' method='post' enctype="multipart/form-data"> <!--enctype précise au serv que le formulaire envoit des texte et des données binaires-->
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/mail.png" alt=""></label>
+                                <input type="mail" placeholder="Contact mail" name="mail">
+                            </span>
+                            <span>
+                                <input type="submit" value="Submit" name="Submit"/>
+                                <input type="reset" value="Reset" name="reset"/>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </section>
+{% endblock %}

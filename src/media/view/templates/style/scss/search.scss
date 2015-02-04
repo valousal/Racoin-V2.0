@@ -1,0 +1,311 @@
+section#search{
+    font-size: 1rem;
+        
+    div{
+        background-color: $category_bg_color;
+        box-sizing: border-box;
+        border: 1px solid $category_border_color;
+        border-top: none;
+        border-bottom: none;
+        font-size: 0;
+        
+        @media screen and (max-width : 30.250em){
+            @include grid_row(100%, 0);
+            height: auto;
+            overflow-y: scroll;
+            border-bottom: none;
+        }
+        @media screen and (min-width : 30.250em) and (max-width : 60em){
+            @include grid_row(100%, 0);
+            height: auto;
+            overflow-y: hidden;
+            border-bottom: none;
+        }
+        @media screen and (min-width : 60em){
+            @include grid_row(60rem, 0);
+            margin: auto;
+        }
+        
+        @media screen and (max-width : 30.250em){
+            border-bottom: none;
+        }
+        @media screen and (min-width : 30.250em) and (max-width : 60em){
+            border-bottom: none;
+        }
+        
+        div:nth-child(1){
+            font-size: 1rem;
+            border: none;
+            overflow: hidden;
+            height: auto;
+            
+            @media screen and (min-width : 60em){
+                @include grid_col(2, 6, 0);
+                padding: 0;
+                height: auto;
+                
+            }
+            @media screen and (max-width : 60em){
+                @include grid_col(6, 6, 0);
+                padding: 0;
+                border-top: 1px solid $category_border_color;
+            }
+            
+            h2{
+                @include grid_row(100%, 0);
+                @include title(1.2em, $category_text_color);
+                text-align: center;
+                border-bottom: 1px solid $category_border_color;
+                background-color: darken($category_bg_color,5%);
+                margin: 0;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                @media screen and (max-width : 60){
+                    display: block;
+                    
+                }
+            }
+            
+            form{
+                @include form($form_search_text,$form_primary_color,$form_secondary_color);
+                
+                input[type="submit"],input[type="reset"]{
+                    @include btn(medium,$form_primary_color);
+                    width: calc(50% - 0.5em);
+                    margin: 0;
+                    margin-bottom: 1em;
+                    border: none;
+                    text-align: center;
+                    font-size: 1rem !important;
+                    font-weight: normal;
+                    &:first-child{
+                        margin-right: 1em;
+                    }
+                    &:hover{
+                        background-color: $form_secondary_color;
+                    }
+                }
+            }
+            
+        }
+        
+        div:nth-child(2){
+            font-size: 1rem;
+            @media screen and (max-width : 60em){
+                @include grid_col(6, 6, 0);
+                border: none;
+                padding: 0;
+            }
+            @media screen and (min-width : 60em){
+                @include grid_col(4, 6, 0);
+                border: none;
+                border-left: 1px solid $category_border_color;
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            h2{
+                @include grid_row(100%, 0);
+                @include title(1.2em, $category_text_color);
+                background-color: darken($category_bg_color,5%);
+                text-align: center;
+                border-bottom: 1px solid $category_border_color;
+                margin: 0;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                display: block;
+                @media screen and (max-width : 60em){
+                    border-top: 1px solid $category_border_color;
+                }
+            }
+            
+            article{
+                @include grid_col(6, 6, 0);
+                max-width: 50rem;
+                margin: auto;
+                border: none;
+                &:last-child{
+                    margin-bottom: 3rem;
+                }
+                box-sizing: border-box;
+                height: auto;
+                font-size: 0 !important;
+                @media screen and (max-width : 32em){
+                    margin-bottom: 0.2rem;
+                }
+                    
+                div{
+                    display: inline-block;
+                    @media screen and (max-width : 32em){
+                        width: 50%;
+                        vertical-align: top;
+                        position: relative;
+                        &:nth-child(1){
+                            h3{
+                                display: none;
+                            }
+                        }
+                        &:nth-child(3){
+                            display: none;
+                        }
+                    }
+                    @media screen and (min-width : 32em){
+                        &:nth-child(1){
+                            width: 30%;
+                            border: none;
+                            padding: 0.5em;
+                        }
+                        &:nth-child(2){
+                            display: none;
+                        }
+                        &:nth-child(3){
+                            width: 70%;
+                            border: none;
+                            border-left: 1px solid $category_border_color;
+                            h3{
+                                text-align: left;
+                                font-size: 1em;
+                                padding: 1em 1.5em 0em;
+                                background-color: transparent;
+                                color: $category_text_color;
+                            }
+                            h4{
+                                text-align: left;
+                                background-color: transparent;
+                                color: $category_text_color;
+                                padding: 0.5em 3em;
+                            }
+                        }
+                    }
+                    font-size: 1rem;
+                    overflow: hidden;
+                    
+                    h3{
+                        display: block;
+                        width: 100%;
+                        font-size: 0.9rem;
+                        font-weight: bold;
+                        text-align: center;
+                        padding: 1em;
+                        box-sizing: border-box;
+                        color: white;
+                        background-color: $button_dark_color;
+                    }
+                    
+                    h4{
+                        display: block;
+                        width: 100%;
+                        font-size: 0.8em;
+                        font-weight: bold;
+                        text-align: center;
+                        box-sizing: border-box;
+                        color: white;
+                        background-color: $button_dark_color;
+                    }
+                    
+                    span {
+                        @media screen and (max-width : 32em){
+                            padding-top: 75%; /* ratio 4:3  */
+                            display: block;
+                        }
+                        @media screen and (min-width : 32em){
+                            padding-top: 75%; /* ratio 4:3  */
+                            display: none;
+                        }
+                    }
+                    div {
+                        width: 100% !important;
+                        display: block !important;
+                        @media screen and (max-width : 32em){
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                        }
+                        
+                        img{
+                            width: 100%;
+                            display: inline-block;
+                            vertical-align: top;
+                        }
+                    }
+                    
+                    p{
+                        @include text(0.8em,$category_text_color);
+                        padding: 1em;
+                        border: none;
+                        a{
+                            margin-top: 2em;
+                            padding-right: 2em;
+                            text-align: right;
+                            text-decoration: underline;
+                        }
+                    }
+                    
+                    a{
+                        @include grid_col(3, 6, 0);
+                        margin: 0;
+                        padding: 0;
+                        height: 100%;
+                        width: 100%;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                        h3:nth-child(1){
+                            @include title(1em, white);
+                            background-color: $button_dark_color;
+                            box-sizing: border-box;
+                            margin: 0;
+                            padding: 14%;
+                            text-align: center;
+                            height: 50%;
+                            width: 100%;
+                        }
+                        h3:nth-child(2){
+                            @include title(1em, $button_dark_color);
+                            background-color: #FAF9F4;
+                            box-sizing: border-box;
+                            margin: 0;
+                            padding: 14%;
+                            text-align: center;
+                            height: 50%;
+                            width: 100%;
+                            &:hover{
+                                color: white;
+                                background-color: $button_ligth_color;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            hr{
+                    border-top: none;
+                border-bottom: 1px solid $category_border_color;
+                margin: 0;
+            }
+            
+            ul{
+                width:  20em;
+                margin: 1em auto;
+                li{
+                    display: inline-block;
+                    padding: 0.6em;
+                    background-color: darken($category_bg_color,5%);
+                    color: $category_text_color;
+                    &:hover{
+                        background-color: $button_ligth_color;
+                        color: white;
+                        cursor: pointer;
+                    }
+                    &:nth-child(3){
+                        background-color: $button_dark_color;
+                        color: white;
+                    }
+                }
+            }
+        }
+        
+    }
+}

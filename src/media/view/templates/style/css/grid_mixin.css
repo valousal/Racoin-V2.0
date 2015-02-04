@@ -1,0 +1,7 @@
+/* line 4, ../scss/grid_mixin.scss */
+.grid_container {
+  width: 100%;
+  height: auto;
+  min-height: 20em;
+  font-size: 0;
+}

@@ -1,0 +1,41 @@
+{% extends "main.html.twig" %}
+
+
+{% block main_content %}
+            <section id="add">
+                <div>
+                    <div>
+                        <h2>Annonce</h2>
+                        <form action='{{url}}' method='post' enctype="multipart/form-data"> <!--enctype précise au serv que le formulaire envoit des texte et des données binaires-->
+                            <fieldset>
+                                <input type='text' value='{{annonce['titre']}}' name='titre'>
+                                <TEXTAREA name="description" value='{{annonce['description']}}'></TEXTAREA>
+                                <input type='number' name='tarif' value='{{annonce['tarif']}}'>
+                                <SELECT name="ville">
+                                    <OPTION VALUE="Nancy">Nancy</OPTION>
+                                    <OPTION VALUE="Metz">Metz</OPTION>
+                                    <OPTION VALUE="Lyon">Lyon</OPTION>
+                                    <OPTION VALUE="Paris">Paris</OPTION>
+                                    <OPTION VALUE="Villerupt">Villerupt</OPTION>
+                                </SELECT> <!--Récupérer liste en json ou depuis une bdd externe?-->
+                                <input type='text' value='{{annonce['CP']}}' name='CP'>
+                                <select name="categorie">
+                                    {% for it in Categories %}
+                                        <option value="{{it.nom}}">{{it.nom}}</option>
+                                    {% endfor %}
+                                </select>
+
+                                <!--champ ajout fichier-->
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" /> <!-- value en octet -->
+                                <input type="file" name="image" id="image" />
+                            </fieldset>
+                            <span>
+                                <input type="hidden" name="_METHOD" value="PUT"/>
+                                <input type="submit" value="Submit"/>
+                                <input type="reset" value="Reset"/>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </section>
+{% endblock %}

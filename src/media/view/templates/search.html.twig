@@ -1,0 +1,89 @@
+{% extends "main.html.twig" %}
+
+{% block main_content %}
+	<section id="category">
+        <div>
+            <div>
+                {# <h2>Categories</h2>
+                <ul>
+                    <li> ALL CATEGORIES</li>
+                    {% for it in AnnonceAll %}
+	                    <a href='{{url2}}{{it.categorie}}'><li> {{it.categorie}} </li> </a>
+	                {% endfor %}
+                </ul>   #} 
+
+                <h2>Recherche</h2>
+                        <form action="{{rootUri}}/search" method="POST">
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/tag.png" alt=""></label>
+                                <input type="text" name="tags" placeholder="Tags">
+                            </span>
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/price.png"></label>
+                                <div>
+                                    <select name="price">
+                                        <option value="allPrice">Tous les prix</option>
+                                        <option value="250"> < 250 €</option>
+                                        <option value="500"> < 500 €</option>
+                                        <option value="750"> < 750 €</option>
+                                        <option value="1000"> < 1000 €</option>
+                                        <option value="1500"> < 1500 €</option>
+                                        <option value="2000"> < 2000 €</option>
+                                    </select>
+                                </div>
+                            </span>
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/category.png" alt=""></label>
+                                <div>
+                                    <select name="category">
+                                        <option value="allCategories">Toutes les catégories</option>
+                                        {% for it in categorie %}
+                                            <option value="{{it.nom}}">{{it.nom}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </span>
+                            <span>
+                                <input type="submit" value="Search">
+                                <input type="reset" value="Reset">
+                            </span>
+                        </form>
+            </div>
+            <div>
+                <h2>Les offres</h2>
+                <!--BOUCLE-->
+                {% for it in Annonces %}
+	                <article>
+	                    <div>
+	                        <img src="{{rootUri}}/data/img_annonces/{{it.images}}.{{it.images_ext}}" alt="img">
+	                        <h3>{{it.tarif}}€</h3>
+	                    </div>
+	                    <div>
+	                        <h3>{{it.titre}}</h3>
+                            <h4>Annonceur : {{it.nom}}</h4>
+                            <h4>Categorie : {{it.categorie.nom}}</h4>
+	                        <p>
+	                            {{it.description}}
+	                        </p>
+	                        <a href="{{url}}{{it.id}}"> (View more) </a> 
+	                    </div>
+	                </article>
+	               {% endfor %}
+                
+
+                <ul>
+                    <li><a><<</a></li>
+                    <li><a><</a></li>
+                    <li><a>1</a></li>
+                    <li><a>2</a></li>
+                    <li><a>3</a></li>
+                    <li><a>4</a></li>
+                    <li><a>...</a></li>
+                    <li><a>></a></li>
+                    <li><a>>></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

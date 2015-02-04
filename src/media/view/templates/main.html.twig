@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+      <meta charset="utf-8">
+      <title> Racoin</title>
+      <link type="text/css" rel="stylesheet" href="{{rootUri}}/src/media/view/templates/style/css/index.css">
+    </head>
+    
+    <body>
+        <div class="grid_container">
+            <!--HEADER-->
+            {% include "header.html.twig" %}
+            
+            <!--BLOCK CONTENT-->
+            <section id="maincontent">
+                {% block main_content %}
+                {% endblock %}
+            </section>
+            
+            <!--FOOTER-->
+            {% include "footer.html.twig" %}
+        </div>
+    </body>
+</html>

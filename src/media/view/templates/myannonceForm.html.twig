@@ -1,0 +1,21 @@
+{% extends "main.html.twig" %}
+
+
+{% block main_content %}
+            <section id="add">
+                <div>
+                    <div>
+                        <h2>Mes Annonces</h2>
+                        <form action='{{action}}' method='post' enctype="multipart/form-data"> <!--enctype précise au serv que le formulaire envoit des texte et des données binaires-->
+                            <fieldset>
+                                <input type="mail" placeholder="Votre mail" name="mail">
+                            </fieldset>
+                            <span>
+                                <input type="submit" value="Submit"/>
+                                <input type="reset" value="Reset"/>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </section>
+{% endblock %}

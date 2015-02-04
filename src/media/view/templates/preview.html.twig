@@ -1,0 +1,53 @@
+{% extends "main.html.twig" %}
+
+
+{% block main_content %}
+<section id="ads">
+    <div>
+        <div>
+            
+            <h2>{{post['annonce']['titre']}}</h2>
+                <div>
+                    <img src="{{rootUri}}/src/media/view/templates/data/images/default_image.jpg" alt="img">
+
+                    <div>
+                        <img src="{{rootUri}}src/media/view/templates/data/images/default_image.jpg" alt="img">
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Description</h2><h3>Description</h3>
+                        <p>{{post['annonce']['description']}}</p>
+                    <h2>Caractéristiques</h2><h3>Caractéristiques</h3>
+                        <p>{{post['annonce']['description']}}</p>
+                </div>
+        </div>
+    
+        <div>
+            <h2>Annonceur</h2>
+                <div>
+                    <h3>Pseudo : {{post['annonce']['nom']}}</h3>
+                    <h3>Mail : {{post['annonce']['mail']}}</h3>
+                    <h3>Ville : {{post['annonce']['ville']}}</h3>
+                    <h3>Téléphone : {{post['annonce']['tel']}}</h3>
+                    <a>Contacter</a>
+                </div>
+
+                <div>
+                    <h2>Prix</h2>
+                        <h3>{{post['annonce']['tarif']}}€</h3>
+                </div>
+        </div>
+        
+        <div>
+            <h2>On valide ?</h2>
+            <form action='{{url_change}}' method="GET">
+               <input type='submit' value='Modifier' name='no_valider'>
+            </form>
+            <form action='{{url_valid}}' method="POST">
+               <input type='submit' value='Valider' name='valider'>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

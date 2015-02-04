@@ -1,0 +1,102 @@
+{% extends "main.html.twig" %}
+
+{% block main_content %}
+                <section id="search">
+                <div>
+                    <div>
+                        <h2>Search</h2>
+                        <form>
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/tag.png" alt=""></label>
+                                <input type="text" placeholder="Tags">
+                            </span>
+                            {# <span>
+                                <label><img src="http://localhost/Racoin/data/icons/author.png" alt=""></label>
+                                <input type="text" placeholder="Author">
+                            </span>
+                            <span>
+                                <label><img src="http://localhost/Racoin/data/icons/city.png" alt=""></label>
+                                <input type="text" placeholder="City or District">
+                            </span> #}
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/city.png"></label>
+                                <div>
+                                    <select>
+                                        <option value"250">250 €</option>
+                                        <option value"500">500 €</option>
+                                        <option value"750">750 €</option>
+                                        <option value"1000">1000 €</option>
+                                        <option value"1500">1500 €</option>
+                                        <option value"2000">2000 €</option>
+                                    </select>
+                                </div>
+                            </span>
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/category.png" alt=""></label>
+                                <div>
+                                    <select>
+                                        {% for it in Categorie %}
+                                            <option>{{it.nom}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </span>
+                            <span>
+                                <input type="submit" value="Search">
+                                <input type="reset" value="Reset">
+                            </span>
+                        </form>
+                    </div>
+                    
+                    <div>
+                       <h2>Results</h2>
+                       
+                       <!--BOUCLE-->
+                       {% for it in AnnonceByCat %}
+                       <article>
+                            {{alert}}
+                            <div>
+                                <span></span>
+                                <div>
+                                    <img src="{{rootUri}}/data/img_annonces/{{it.images}}.{{it.images_ext}}" alt="img">
+                                    <h3>{{it.tarif}}€</h3>
+                                </div>  
+                            </div>
+                            <div>
+                                <span></span>
+                                <div>
+                                    <a href="#">
+                                        <h3> {{it.titre}} </h3>
+                                        <h3> {{it.tarif}}€</h3>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h3>{{it.titre}}</h3>
+                                <h4>Annonceur : {{it.nom}}</h4>
+                                <p>
+                                    {{it.description}}
+                                    <a href="{{url}}{{it.id}}"> View more</a>
+                                </p>
+                            </div>
+                        </article>
+                       <hr>
+                       {% endfor %}
+                        
+                        <ul>
+                            <li><a><<</a></li>
+                            <li><a><</a></li>
+                            <li><a>1</a></li>
+                            <li><a>2</a></li>
+                            <li><a>3</a></li>
+                            <li><a>4</a></li>
+                            <li><a>...</a></li>
+                            <li><a>></a></li>
+                            <li><a>>></a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </section>
+    
+{% endblock %}

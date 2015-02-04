@@ -1,0 +1,311 @@
+section#category{
+    font-size: 1rem;
+        
+    div{
+        background-color: $category_bg_color;
+        box-sizing: border-box;
+        border: 1px solid $category_border_color;
+        border-bottom: 0;
+        border-top: none;
+        font-size: 0;
+        
+        @media screen and (max-width : 30.250em){
+            @include grid_row(100%, 0);
+            height: auto;
+            overflow-y: scroll;
+            border-bottom: none;
+        }
+        @media screen and (min-width : 30.250em) and (max-width : 60em){
+            @include grid_row(100%, 0);
+            height: auto;
+            overflow-y: hidden;
+            border-bottom: none;
+        }
+        @media screen and (min-width : 60em){
+            @include grid_row(60rem, 0);
+            margin: auto;
+        }
+        
+        @media screen and (max-width : 30.250em){
+            border-bottom: none;
+        }
+        @media screen and (min-width : 30.250em) and (max-width : 60em){
+            border-bottom: none;
+        }
+        
+        div:nth-child(1){
+            font-size: 1rem;
+            border: none;
+            overflow: hidden;
+            height: auto;
+            
+            @media screen and (min-width : 60em){
+                display: inline-block;
+                @include grid_col(2, 6, 0);
+                padding: 0;
+                height: auto;
+                min-height: 24em;
+            }
+            
+            h2{
+                @include grid_row(100%, 0);
+                @include title(1.2em, $category_text_color);
+                text-align: center;
+                border-bottom: 1px solid $category_border_color;
+                background-color: darken($category_bg_color,5%);
+                margin: 0;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                @media screen and (max-width : 30.250em){
+                    display: block;
+                }
+                @media screen and (min-width : 30.250em) and (max-width : 60em){
+                    display: block;
+                }
+                @media screen and (min-width : 60em){
+                    display: block;
+                }
+                @media screen and (max-width : 60em){
+                    border-top: 1px solid $category_border_color;
+                }
+            }
+
+            form{
+                @include form($form_search_text,$form_primary_color,$form_secondary_color);
+                
+                input[type="submit"],input[type="reset"]{
+                    @include btn(medium,$form_primary_color);
+                    width: calc(50% - 0.5em);
+                    margin: 0;
+                    margin-bottom: 1em;
+                    border: none;
+                    text-align: center;
+                    font-size: 1rem !important;
+                    font-weight: normal;
+                    &:first-child{
+                        margin-right: 1em;
+                    }
+                    &:hover{
+                        background-color: $form_secondary_color;
+                    }
+                }
+
+                select{
+                    cursor: pointer;
+                }
+            }
+            
+            ul{
+                @include grid_row(100%, 0);
+                @media screen and (min-width : 30.250em) and (max-width : 60em){
+                    height: 7.7rem;
+                    overflow-y: scroll;
+                    display: block;
+                    font-size: 0;
+                    border-bottom: none;
+                }
+                @media screen and (min-width : 60em){
+                    height: 100%;
+                    overflow-y: scroll;
+                    display: block;
+                    font-size: 0;
+                }
+                
+                li{
+                    border-bottom: 1px solid $category_border_color;
+                    font-weight: bold;
+                    color: #5F5D5F;
+                        
+                    &:first-child{
+                        background-color: $button_dark_color;
+                        color: white;
+                    }
+                    
+                    &:hover{
+                        background-color: $button_ligth_color;
+                        color: white;
+                        cursor: pointer;
+                    }
+                    
+                    @media screen and (max-width : 30.250em){
+                        @include grid_col(6, 6, 0);
+                        display: block;
+                        font-size: 0.9rem;
+                        padding: 0.5rem;
+                        padding-left: 1em;
+                        &:last-child{
+                            border-bottom: none !important;
+                        }
+                    }
+                    @media screen and (min-width : 30.250em) and (max-width : 60em){
+                        @include grid_col(3, 6, 0);
+                        font-size: 0.9rem;
+                        padding: 0.5rem;
+                        text-align: center;
+                        &:nth-child(even){   
+                            border-left: 1px solid $category_border_color;
+                        }
+                        &:nth-last-child(2),&:nth-last-child(1){
+                            border-bottom: 0;
+                        }
+                    }
+                    @media screen and (min-width : 60em){
+                        @include grid_col(6, 6, 0);
+                        display: block;
+                        font-size: 0.9rem;
+                        padding: 0.5rem;
+                        padding-left: 1em;
+                    }
+                }
+            }
+        }
+        
+        div:nth-child(2){
+            font-size: 1rem;
+            @media screen and (max-width : 60em){
+                display: block;
+            }
+            @media screen and (min-width : 60em){
+                display: inline-block;
+                @include grid_col(4, 6, 0);
+                border: none;
+                border-left: 1px solid $category_border_color;
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            h2{
+                @include grid_row(100%, 0);
+                @include title(1.2em, $category_text_color);
+                background-color: darken($category_bg_color,5%);
+                text-align: center;
+                border-bottom: 1px solid $category_border_color;
+                margin: 0;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                display: block;
+                @media screen and (max-width : 60em){
+                    border-top: 1px solid $category_border_color;
+                }
+            }
+            
+            article{
+                width: 100%;
+                height: auto;
+                font-size: 0;
+                border-bottom: 1px solid $category_border_color;
+                @media screen and (max-width : 60em){
+                    border-bottom: 1px solid $category_border_color;
+                    max-height: 14rem;
+                }
+                div:nth-child(1){
+                    width: 30%;
+                    max-width: 12rem;
+                    display: inline-block;
+                    vertical-align: top;
+                    min-height: 13em;
+                    font-size: 1rem;
+                    padding: 0.5em;
+                    border-right: 1px solid $category_border_color;
+                    span{
+                        display: none;
+                    }
+                    img{
+                        display: block;
+                        width: 100%;
+                        margin: 0;
+                    }
+                    h3{
+                        @include title(1.2em, white);
+                        text-align: center;
+                        font-weight: normal;
+                        background-color: $button_dark_color;
+                        margin: 0;
+                        padding: 0.6em;
+                    }   
+                    @media screen and (max-width : 60em){
+                        max-width: 10rem;
+                        max-height: 10rem;
+                    }                   
+                }  
+                div:nth-child(2){
+                    width: 70%;
+                    min-height: 13rem;
+                    display: inline-block;
+                    vertical-align: top;
+                    font-size: 1rem;
+                    border: none;
+                    @media screen and (max-width : 60em){
+                        max-height: 14rem;
+                    } 
+                    h3{
+                        @include title(1.1em, $category_text_color);
+                        text-indent: 1em;
+                        margin-bottom: 0.4em;
+                    }
+                    h4{
+                        @include title(0.8em, $category_text_color);
+                        text-indent: 2em;
+                        margin-top: 0;
+                        margin-bottom: 0.5rem;
+                    }
+                    p{
+                        @include text(0.8em,$category_text_color);
+                        height: 6em;
+                        overflow: hidden;
+                        margin-top: 1rem;
+                        padding: 1em;
+                        padding-top: 0;
+                        &:after{
+                            content: " ...";
+                        }
+                        @media screen and (max-width : 60em){
+                           height: 4em;
+                           margin-bottom: 1rem;
+                        } 
+                    }
+                    a{
+                        float: right;
+                        @include title(0.8em, $category_text_color);
+                        margin-top: 0.2em;
+                        margin-right: 2em;
+                        &:hover{
+                            text-decoration: underline;
+                            cursor: pointer;
+                        }
+                    }
+                    @media screen and (max-width : 60em){
+                        max-height: 10rem;
+                    }  
+                }
+                div:nth-child(3){
+                    vertical-align: top;
+                     @media screen and (min-width : 60em){
+                        display: none;
+                    }
+                }
+            }
+            
+            ul{
+                width:  20em;
+                margin: 1em auto;
+                li{
+                    display: inline-block;
+                    padding: 0.6em;
+                    background-color: darken($category_bg_color,5%);
+                    color: $category_text_color;
+                    &:hover{
+                        background-color: $button_ligth_color;
+                        color: white;
+                        cursor: pointer;
+                    }
+                    &:nth-child(3){
+                        background-color: $button_dark_color;
+                        color: white;
+                    }
+                }
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,20 @@
+$white: white;
+$red: #e79a9c;
+$orange: #f4bf70;
+$green: #a3f591;
+$blue: #C5EFF7;
+
+
+%alt{
+    width: 90%;
+    height: auto;
+    display: block;
+    padding: 15px 30px 15px 30px;
+    margin: 15px auto 15px;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}

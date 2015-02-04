@@ -1,0 +1,79 @@
+{% extends "main.html.twig" %}
+
+
+{% block main_content %}
+<section id="ads">
+    <div>
+        <div>
+            <h2>{{Annonce['titre']}}</h2>
+                <div>
+                    <img src="{{rootUri}}/data/img_annonces/{{Images.name}}.{{Images.extension}}" alt="img" id="main_img">
+                    <div id="miniatures">
+                        {% for it in Miniatures %}
+                            <img src="{{rootUri}}/data/img_annonces_miniatures/{{it.name}}.{{it.extension}}" alt="img">
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Description</h2><h3>Description</h3>
+                        <p>{{Annonce['description']}}</p>
+                    <h2>Caractéristiques</h2><h3>Caractéristiques</h3>
+                        <p>{{Annonce['description']}}</p>
+                </div>
+        </div>
+    
+        <div>
+            <h2>Annonceur</h2>
+                <div>
+                    <h3>Pseudo : {{Annonce['nom']}}</h3>
+                    <h3>Mail : {{Annonce['mail']}}</h3>
+                    <h3>Ville : {{Annonce['ville']}}</h3>
+                    <h3>Téléphone : {{Annonce['tel']}}</h3>
+                    <a>Contacter</a>
+                </div>
+
+                <div>
+                    <h2>Prix</h2>
+                        <h3>{{Annonce['tarif']}}€</h3>
+                </div>
+        </div>
+        
+        <div>
+            <h2>Vous êtes l'annonceur ?</h2>
+            <form action='{{url}}' method="POST">
+                {# <span>
+                    <label><img src="data/icons/mail.png" alt=""></label>
+                    <input type="mail" placeholder="Email ID" name="mail">
+                </span> #}
+                <span>
+                    <label><img src="{{rootUri}}/data/icons/password.png" alt=""></label>
+                    <input type="password" placeholder="Password" name="password">
+                </span>
+                <span>
+
+                    <input type="submit" value="Modifier"/>
+                    <input type="reset" value="Reset"/>
+                </span>
+            </form>
+            <form action='{{url2}}' method="POST">
+                {# <span>
+                    <label><img src="data/icons/mail.png" alt=""></label>
+                    <input type="mail" placeholder="Email ID" name="mail">
+                </span> #}
+                <span>
+                    <label><img src="{{rootUri}}/data/icons/password.png" alt=""></label>
+                    <input type="password" placeholder="Password" name="password">
+                </span>
+                <span>
+                    <input type="hidden" name="_METHOD" value="DELETE"/> <!--override pour faire passer la methode DELETE-->
+                    <input type="submit" value="Supprimer"/>
+                    <input type="reset" value="Reset"/>
+                </span>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="../src/js/jquery.js"></script>
+<script type="text/javascript" src="../src/js/miniatures.js"></script>
+{% endblock %}

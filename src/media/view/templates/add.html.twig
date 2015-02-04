@@ -1,0 +1,87 @@
+{% extends "main.html.twig" %}
+ {# $form: formulaire format html  #}
+{% block main_content %}
+        
+    <section id="add">
+        <div>
+            <div>
+                <form action='{{urlAnnonce}}' method='post' enctype="multipart/form-data"> <!--enctype précise au serv que le formulaire envoit des texte et des données binaires-->
+                    <h2>Annonce</h2>
+                    <fieldset>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/title.png" alt=""></label>
+                            <input type='text' placeholder='Titre' name='titre'>
+                        </span>
+                        <span>
+                            <TEXTAREA name="description"></TEXTAREA>
+                        </span>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/price.png" alt=""></label>
+                            <input type='number' name='tarif'>
+                        </span>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/city.png" alt=""></label>
+                            <SELECT name="ville">
+                                <OPTION VALUE="Nancy">Nancy</OPTION>
+                                <OPTION VALUE="Metz">Metz</OPTION>
+                                <OPTION VALUE="Lyon">Lyon</OPTION>
+                                <OPTION VALUE="Paris">Paris</OPTION>
+                                <OPTION VALUE="Villerupt">Villerupt</OPTION>
+                            </SELECT> <!--Récupérer liste en json ou depuis une bdd externe?-->
+                        </span>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/address.png" alt=""></label>
+                            <input type='text' placeholder='Adresse' name='CP'>
+                        </span>
+                        <span>    
+                            <label><img src="{{rootUri}}/data/icons/category.png" alt=""></label>
+                                <select name="categorie">
+                                    {% for it in Categories %}
+                                        <option value="{{it.nom}}">{{it.nom}}</option>
+                                    {% endfor %}
+                                </select>
+                        </span>
+                        <span>
+                            <!--champ ajout fichier-->
+                           <!--  <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />--> <!-- value en octet -->
+                            <input type="file" name="image" id="image" />
+                        </span>
+                    </fieldset>
+                    <h2>Annonceur</h2>
+                    <fieldset>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/author.png" alt=""></label>
+                            <input type='text' placeholder='Nom' name='nom' {% if authentification %}value='{{authentification['name']}}'{% endif %}>
+                        </span>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/mail.png" alt=""></label>
+                            <input type="mail" placeholder="Contact mail" name="mail" {% if authentification %}value='{{authentification['mail']}}'{% endif %}>
+                        </span>
+                        <span>
+                            <label><img src="{{rootUri}}/data/icons/phone.png" alt=""></label>
+                            <input type="tel" placeholder="tel" name="tel" {% if authentification %}value='{{authentification['tel']}}' {% endif %}>
+                        </span>
+                        {% if not authentification %}
+                            <span>
+                                <label><img src="{{rootUri}}/data/icons/password.png" alt=""></label>
+                                <input type="password" placeholder="password" name="password">
+                            </span>
+                        {% else %}
+                            <span>
+                                <input type="hidden" placeholder="password" name="password" value='{{authentification['password']}}'>
+                            </span>
+                        {% endif %}
+                    </fieldset>
+                    <h2> Actions</h2>
+                    <fieldset>
+                        <span>
+                            <input type="submit" value="Preview" name="Preview"/>
+                            <input type="submit" value="Submit" name="Submit"/>
+                            <input type="reset" value="Reset" name="reset"/>
+                        </span>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

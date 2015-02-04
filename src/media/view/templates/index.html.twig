@@ -1,0 +1,30 @@
+{% extends "main.html.twig" %}
+
+{% block main_content %}
+	
+    <section id="offer">
+        <div>
+            <h2>Nos dernières offres:</h2>
+            <!--FAIRE UNE BOUCLE-->
+            {% for it in AnnonceAll %}
+	            <article>
+	                <div>
+	                    <span></span>
+	                    <div>
+	                        <img src="{{rootUri}}/data/img_annonces/{{it.images}}.{{it.images_ext}}" alt="img">
+	                    </div>
+	                </div>
+	                <div>
+	                    <span></span>
+	                    <div>
+	                        <a href="#">
+	                            <h3> {{it.titre}}</h3>
+	                            <h3> {{it.tarif}}€</h3>
+	                        </a>
+	                    </div>
+	                </div>
+	            </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

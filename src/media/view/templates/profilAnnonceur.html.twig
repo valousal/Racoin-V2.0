@@ -1,0 +1,44 @@
+{% extends "main.html.twig" %}
+
+
+{% block main_content %}
+<section id="ads">
+    <div>
+        <div>
+            <h2>{{Annonceur['nom']}}</h2>
+                <div>
+                    <img src="{{rootUri}}/data/profil_default.png" alt="img" id="main_img">
+                </div>
+
+                <div>
+                    <h2>Mail</h2><h3>Mail</h3>
+                        <p>{{Annonceur['mail']}}</p>
+                    <h2>Categorie</h2><h3>Categorie</h3>
+                        <p>{{Categorie['nom']}}</p>
+                    <h2>Téléphone</h2><h3>Téléphone</h3>
+                        <p>{{Annonceur['tel']}}</p>
+                    <h2>Ville</h2><h3>Ville</h3>
+                        <p>{{Annonceur['ville']}}</p>
+                    <h2>CP</h2><h3>CP</h3>
+                        <p>{{Annonceur['CP']}}</p>
+                    <h2>Token API</h2><h3>Token API</h3>
+                        <p>{{Token['token']}}</p>
+                </div>
+        </div>
+        <div>
+            <h2>Annonces</h2>
+            {% for it in Annonces %}
+                <div>
+                    <h3><a href="{{urlAnnonce}}{{it.id}}">{{it.titre}}</a></h3>
+                    <h3>Description : {{it.description}}</h3>
+                    <h3>Ville : {{it.ville}}</h3>
+                    <h3>Catégorie : {{it.id_categorie}}</h3>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="../src/js/jquery.js"></script>
+<script type="text/javascript" src="../src/js/miniatures.js"></script>
+{% endblock %}
