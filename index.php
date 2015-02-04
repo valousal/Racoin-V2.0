@@ -14,6 +14,16 @@ $app = new \Slim\Slim(); //Slim init
 DataBaseConnect::setConfig("config/config.ini"); //dataBase connection, $file, mettre le nom de son fichier config!
 
 
+
+
+
+
+
+
+
+
+
+
 /*******************************************/
 /*************ANNONCES*********************/
 /*******************************************/
@@ -26,14 +36,6 @@ $app->get( '/annonce/:n', function($n) use ($app){
 	$annonceController = new controller\AnnonceController;
 	$annonceController->displayAnnonce($n,$url,$url2,$app);
 })->name('annonce');
-
-/*//Récupérer une image d'une annonce
-$app->get( '/image/:n', function($n) use ($app){ 
-	$annonceController = new controller\AnnonceController;
-	$annonceController->displayImage();
-})->name('image');*/
-
-
 
 
 //Visualiser la liste des annonces
@@ -140,6 +142,11 @@ $app->delete( '/annonce/:n', function($n) use ($app){
 
 
 
+
+
+
+
+
 /*******************************************/
 /*************ANNONCEUR*********************/
 /*******************************************/
@@ -175,6 +182,15 @@ $app->get('/pro/logout', function(){
 	$proController->LogoutPro();
 })->name('LogoutPro');
 
+
+
+
+
+
+
+
+
+
 /***************************************************/
 /*********************RECHERCHE*********************/
 /***************************************************/
@@ -192,6 +208,22 @@ $app->post( '/search', function(){
 	$annonceSearch = new controller\AnnonceController;
 	$annonceSearch->search();
 })->name('search_post');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***************************************************/
 /*********************  API    *********************/
@@ -249,7 +281,7 @@ $app->get('/api', function(){
 
 
 //Liste les annonces API
-$app->get('/api/annonces', $checkToken(), function(){
+$app->get('/api/annonces', $checkToken(), function(){ //Query : cat , price et tag
 	$apiController = new controller\ApiController;
 	$apiController->Annonces();
 })->name('annoncesApi');
@@ -278,6 +310,11 @@ $app->post('/api/annonces', $checkToken(), function() use($app){
 	$apiController->PostAnnonce($app);
 })->name('postAnnonceApi');
 
+//Modifier une annonce
+$app->put('/api/annonces/:id', $checkToken(), function($id) use($app){
+	$apiController = new controller\ApiController;
+	$apiController->PutAnnonce($app, $id);
+})->name('putAnnonceApi');
 
 /*$app->group('/api', function () use ($app, $checkToken) {
 	$c = new controller\ApiController;

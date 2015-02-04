@@ -104,9 +104,39 @@ class ApiController extends AbstractController{
 
 	//annonces
 	public function Annonces(){
-		$annonces = Annonce::select('id','titre','tarif')->get();
-		//echo $annonces;
 		$app = \Slim\Slim::getInstance();
+		$c = $app->request->get('cat');
+		$p = $app->request->get('price');
+		$t = $app->request->get('tag');
+
+		if($t=='noTags'){
+			$t='noTags';
+		}
+
+		if($c!='all'){
+			$categorie_search = Categorie::where('nom', '=', $c)->first();
+			$idcategorie = $categorie_search->id;
+		}
+
+		if($p=='allPrice'){
+			$p='allPrice';
+		}
+
+		//$annonces = Annonce::select('id','titre','tarif')->get();
+		$categorie_search = Categorie::where('nom', '=', $c)->first();
+		$idcategorie = $categorie_search->id;
+		$annonces = Annonce::where(function($query) use($p,$t,$c,$idcategorie) {
+																	if($t!='noTags'){
+			        													$query->where('titre', 'LIKE', "%$t%");
+			    													}
+																	if($c!='allCategories'){
+																        $query->where('id_categorie', '=', "$idcategorie");
+																    }
+			    													if($p!='allPrice'){
+																        $query->where('tarif', '<', "$p");
+																    }})
+																->get();
+
 		// Get request object
 		$req = $app->request;
 		//Get root URI
@@ -376,7 +406,95 @@ class ApiController extends AbstractController{
 			echo "champs invalides";
 		}
 	}
+	
+	//modifier une annonce API
+	public function PutAnnonce($app, $id){
+		/*if (isset($_POST["titre"], $_POST["description"], $_POST["tarif"], $_POST["ville"], $_POST["CP"],$_POST["categorie"] )
+		 && !empty($_POST["titre"]) && !empty( $_POST["description"]) && !empty( $_POST["tarif"]) && !empty( $_POST["ville"]) && !empty( $_POST["CP"]) && !empty($_POST["categorie"])
+		){*/
+			//password
+			$changeAnnonce = Annonce::find($id);
+			$hash = $changeAnnonce->password;
+			$annonceur_password_clear = filter_var($app->request->put('password'), FILTER_SANITIZE_STRING);//$_POST['password'];
+			
+			if (password_verify($annonceur_password_clear, $hash)) {
+
+				if ($app->request->put('categorie') != null){
+					$categoriePost = filter_var($app->request->put('categorie'), FILTER_SANITIZE_STRING);//filter_input(INPUT_POST, 'categorie', FILTER_SANITIZE_STRING);//$_POST["categorie"];
+					$categorie = Categorie::where('nom', '=', $categoriePost)->first();
+					$id_categorie = $categorie->id;
+				}else{
+					$id_categorie = $changeAnnonce->id_categorie;
+				}
+				
+				
+
+				//gestion informations de l'annonce
+				// $changeAnnonce = Annonce::find($id);
+				if($app->request->put('titre') != null){
+					$titre = filter_var($app->request->put('titre'), FILTER_SANITIZE_STRING);
+				}else{
+					$titre = $changeAnnonce->titre;
+				}
+				if($app->request->put('description') != null){
+					$description = filter_var($app->request->put('description'), FILTER_SANITIZE_STRING);
+				}else{
+					$description = $changeAnnonce->description;
+				}
+				if($app->request->put('tarif') != null){
+					$tarif = filter_var($app->request->put('tarif'), FILTER_SANITIZE_STRING);
+				}else{
+					$tarif = $changeAnnonce->tarif;
+				}
+				if($app->request->put('ville') != null){
+					$ville = filter_var($app->request->put('ville'), FILTER_SANITIZE_STRING);
+				}else{
+					$ville = $changeAnnonce->ville;
+				}
+				if($app->request->put('CP') != null){
+					$CP = filter_var($app->request->put('CP'), FILTER_SANITIZE_STRING);
+				}else{
+					$CP = $changeAnnonce->CP;
+				}
+				$changeAnnonce->titre = $titre;//filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING);//$_POST["titre"];
+				$changeAnnonce->description = $description;//filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);//$_POST["description"];
+				$changeAnnonce->tarif = $tarif;//filter_input(INPUT_POST, 'tarif', FILTER_SANITIZE_STRING);//$_POST["tarif"];
+				$changeAnnonce->ville = $ville;//filter_input(INPUT_POST, 'ville', FILTER_SANITIZE_STRING);//$_POST["ville"];
+				$changeAnnonce->CP = $CP;//filter_input(INPUT_POST, 'CP', FILTER_SANITIZE_STRING);//$_POST["CP"];
+				$changeAnnonce->id_categorie = $id_categorie;
+				$changeAnnonce->save();
+				$id_annonce = $changeAnnonce->id;
+
+				/* Valid */
+				$req = $app->request;
+				//Get root URI
+				$rootUri = $req->getUrl();
+				$rootUri .= $req->getRootUri();
+				$changeAnnonce->images = array('href' => "$rootUri/data/img_annonces/".$changeAnnonce->images.".".$changeAnnonce->images_ext);
+				$annonceArray['annonce'] = $changeAnnonce; //toJson ?????
+				$changeAnnonce->password = null;
+				$annonceArray['links'] = array(		'rel' => 'categorie',
+													'id' => $id_categorie,
+													'nom' => $categorie->nom,
+													'uri' => "$rootUri/api/categorie/".$categorie->nom);
+				
+				$app->response->setStatus(200) ; //204 pour PUT mais ne retourne aucune données aussi
+				$app->response->headers->set('Content-type','application/json') ;
+				echo json_encode($annonceArray);
+		
+		    } else {
+		        /* Invalid */
+		        $app->response->headers->set('Content-type','application/json') ;
+	           	$app->halt(500, json_encode(array("erreur_message"=>'invalide Password')));
+		    }
+		/*}else{
+			/* Invalid */
+	        //$app->response->headers->set('Content-type','application/json') ;
+	       	//$app->halt(500, json_encode(array("erreur_message"=>'Champs invalides')));
+		//}*/
+	}
 
 
 
+/*END CLASS */
 }

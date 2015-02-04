@@ -16,6 +16,10 @@ Donnees utiles :
 
 		GET :
 			http://racoin.valentin-salvestroni.fr/api/annonces?apiKey=
+			Filtrer les annonces avec query, exemple :
+			http://localhost/Racoin/api/annonces?apiKey=&cat=Informatique&price=100&tag=Go
+			Valeurs spécifiques : noTags, allPrice, noTags
+
 			http://racoin.valentin-salvestroni.fr/api/annonces/:id?apiKey=
 			http://racoin.valentin-salvestroni.fr/api/categories?apiKey=
 			http://racoin.valentin-salvestroni.fr/api/categorie/:categorie/annonces?apiKey=
