@@ -4,7 +4,7 @@ namespace media\modele;
 use \Illuminate\Database\Eloquent\Model ;
 
 class Images extends Model {
-	protected $table = 'imagesracoin';
+	protected $table = 'images';
 	protected $primaryKey = 'id';
 	public $timestamps=false;
 

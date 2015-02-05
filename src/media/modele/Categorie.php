@@ -4,7 +4,7 @@ namespace media\modele;
 use \Illuminate\Database\Eloquent\Model ;
 
 class Categorie extends Model {
-	protected $table = 'categoriesracoin';
+	protected $table = 'categories';
 	protected $primaryKey = 'id';
 	public $timestamps=false;
 

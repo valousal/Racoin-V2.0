@@ -4,7 +4,7 @@ namespace media\modele;
 use \Illuminate\Database\Eloquent\Model ;
 
 class Annonceur extends Model {
-	protected $table = 'annonceursracoin';
+	protected $table = 'annonceurs';
 	protected $primaryKey = 'id';
 	public $timestamps=false;
 

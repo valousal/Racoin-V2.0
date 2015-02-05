@@ -116,20 +116,20 @@ class ApiController extends AbstractController{
 		if($c!='all'){
 			$categorie_search = Categorie::where('nom', '=', $c)->first();
 			$idcategorie = $categorie_search->id;
+		}else{
+			$idcategorie = null;
 		}
 
 		if($p=='allPrice'){
 			$p='allPrice';
 		}
 
-		//$annonces = Annonce::select('id','titre','tarif')->get();
-		$categorie_search = Categorie::where('nom', '=', $c)->first();
-		$idcategorie = $categorie_search->id;
-		$annonces = Annonce::where(function($query) use($p,$t,$c,$idcategorie) {
+
+		$annonces = Annonce::where(function($query) use ($p,$t,$c,$idcategorie) {
 																	if($t!='noTags'){
 			        													$query->where('titre', 'LIKE', "%$t%");
 			    													}
-																	if($c!='allCategories'){
+																	if($c!='all'){
 																        $query->where('id_categorie', '=', "$idcategorie");
 																    }
 			    													if($p!='allPrice'){
@@ -137,39 +137,48 @@ class ApiController extends AbstractController{
 																    }})
 																->get();
 
-		// Get request object
-		$req = $app->request;
-		//Get root URI
-		$rootUri = $req->getUrl();
-		$rootUri .= $req->getRootUri();
 
-		$all = array();
-		foreach ($annonces as $key => $annonce){
-            $value['annonce'] = $annonce; //->toJson() pas sur de le mettre .. 
-			$value['links'] = array('rel' => "self",
-									'href' => "$rootUri/api/annonces/".$annonce->id);
-			$all[]=$value;
+		if (!empty($annonces)){
+			// Get request object
+			$req = $app->request;
+			//Get root URI
+			$rootUri = $req->getUrl();
+			$rootUri .= $req->getRootUri();
+
+			$all = array();
+			foreach ($annonces as $key => $annonce){
+	            $value['annonce'] = $annonce; //->toJson() pas sur de le mettre .. 
+				$value['links'] = array('rel' => "self",
+										'href' => "$rootUri/api/annonces/".$annonce->id);
+				$all[]=$value;
+			}
+
+			$nbAnnonce = $annonces->count();
+
+			//next et prev ????
+
+			$all['links'] = array(array('rel' => 'prev',
+									'href' => "$rootUri/api/annonces/?limit=10&offset=150"),
+									array('rel' => 'next',
+									'href' => "$rootUri/api/annonces/?limit=10&offset=0"),
+									array('rel' => 'first',
+									'href' => "$rootUri/api/annonces/?limit=10&offset=150"),
+									array('rel' => 'last',
+									'href' => "$rootUri/api/annonces/?limit=10&offset=$nbAnnonce"),
+									);
+
+
+
+			$app->response->setStatus(200) ;
+			$app->response->headers->set('Content-type','application/json') ;
+			echo json_encode($all);
+		}else{
+			 /* Invalid */
+		     $app->response->headers->set('Content-type','application/json') ;
+	         $app->halt(500, json_encode(array("erreur_message"=>'Aucune annonce')));
 		}
 
-		$nbAnnonce = $annonces->count();
-
-		//next et prev ????
-
-		$all['links'] = array(array('rel' => 'prev',
-								'href' => "$rootUri/api/annonces/?limit=10&offset=150"),
-								array('rel' => 'next',
-								'href' => "$rootUri/api/annonces/?limit=10&offset=0"),
-								array('rel' => 'first',
-								'href' => "$rootUri/api/annonces/?limit=10&offset=150"),
-								array('rel' => 'last',
-								'href' => "$rootUri/api/annonces/?limit=10&offset=$nbAnnonce"),
-								);
-
-
-
-		$app->response->setStatus(200) ;
-		$app->response->headers->set('Content-type','application/json') ;
-		echo json_encode($all);
+	
 	}
 
 	//Une annonce
@@ -393,17 +402,16 @@ class ApiController extends AbstractController{
 
 				}
 			} catch (\Exception $e) {
-			    $app->response->setStatus(500) ;
-				//$app->response->headers->set('Content-type','application/json') ;
-				//echo "champs invalides";
-				echo "erreur 1";
+			    /* Invalid */
+		        $app->response->headers->set('Content-type','application/json') ;
+	           	$app->halt(500, json_encode(array("erreur_message"=>'images error')));
 			}
 
 		}else{
 			
-			$app->response->setStatus(500) ;
-			//$app->response->headers->set('Content-type','application/json') ;
-			echo "champs invalides";
+			 /* Invalid */
+		        $app->response->headers->set('Content-type','application/json') ;
+	           	$app->halt(500, json_encode(array("erreur_message"=>'champs invalides')));
 		}
 	}
 	
