@@ -1,6 +1,6 @@
 Depot GIT du projet : https://github.com/valousal/Racoin-V2.0
 
-URL projet en ligne : http://racoin.valentin-salvestroni.fr/
+URL projet en ligne : http://racoin.lucas-arcuri.fr/
 
 Donnees utiles : 
 	Pour s'authentifier au compte PRO : 
